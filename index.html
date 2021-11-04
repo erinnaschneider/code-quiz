@@ -4,11 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    
+    <!-- Main container -->
+    <div class="container">
+      <div><a href="#">High Scores</a></div>
+
+      <div class="timer">Time: <span id="time">75</span></div>
+        <!-- start container-->
+      <div id="start">
+          <h1>Game start text here</h1>
+          <button id="startBtn">Start Game</button>
+      </div>
+      <!--Question Container-->
+      <div id="questions" class="hide">
+          <div id="questionTitle"></div>
+          <div id="questionOptions"></div>
+      </div>
+
+      <!--end Game Container-->
+      <div class="hide" id="endgame">
+          <h1>Game is over text</h1>
+          <p>Your score is: <span id="finalscore"></span></p>
+          <p>Your initials here: <input type="text" id="initials" />
+                <button id="submitinitials">Submit</button>        
+        </p>
+      </div>
+
+    </div>
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
