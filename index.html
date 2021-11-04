@@ -15,13 +15,21 @@
       <div class="timer">Time: <span id="time">75</span></div>
         <!-- start container-->
       <div id="start">
-          <h1>Game start text here</h1>
-          <button id="startBtn">Start Game</button>
+          <h1>Coding Quiz Challenge</h1>
+          <p>Try to answer these coding questions within the given time limit. Whatever time is left will be your score! Incorrect responses will reduce your time remaining by 7 seconds. Play as much as you like to see if you can beat your high score!</p>
+          <button id="startBtn">Start Quiz</button>
       </div>
       <!--Question Container-->
       <div id="questions" class="hide">
           <div id="questionTitle"></div>
-          <div id="questionOptions"></div>
+          <div id="questionOptions">
+            <ol class="answerChoices">
+              <li class="button"><button id="a"></button></li>
+              <li class="button"><button id="b"></button></li>
+              <li class="button"><button id="c"></button></li>
+              <li class="button"><button id="d"></button></li>
+          </ol>
+          </div>
       </div>
 
       <!--end Game Container-->

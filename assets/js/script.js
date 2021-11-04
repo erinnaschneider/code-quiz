@@ -10,6 +10,11 @@ var finalScoreEl = document.getElementById('finalscore');
 var initialsInput = document.getElementById('initials');
 var initialsSubmitButton = document.getElementById("submitinitials");
 
+var choiceA = document.getElementById("a");
+var choiceB = document.getElementById("b");
+var choiceC = document.getElementById("c");
+var choiceD = document.getElementById("d");
+
 var time = 75;
 var index = 0;
 var timer;
@@ -21,33 +26,32 @@ var quizQuestions =
         {
           question: "What is the first item in an HTML document?",
           choices: ["<head>", "<!DOCTYPE>", "<body>", "<html>"],
-          answer: 2
+          answer: "2"
         },
         
         {
           question: "What does HTML stand for?",
           choices: ["Hyper Text Marketing Language", "Hyper Text Movement Language", "Hyper Text Model Language", "Hyper Text Markup Language"],
-          answer: 4
+          answer: "4"
         },
 
         {
             question: "What does DOM stand for?",
             choices: ["Data Object Model", "Data Operative Manual", "Document Object Model", "Document Opening Manual"],
-            answer: 3
+            answer: "3"
         },
 
         {
             question: "What does API stand for?",
             choices: ["Application programming interface", "Application popup interface", "Application programming index", "Application popup index"],
-            answer: 1
+            answer: "1"
         },
 
         {
             question: "How do you call a function named 'myFunction'?",
             choices: ["{myFunction}", "(myFunction)", "myFunction()", "myFunction{}"],
-            answer: 3
+            answer: "3"
         }
-        
         
       ];
       
@@ -77,13 +81,41 @@ function getGoing(){
  showQuestions()
 };
 
-function showQuestions(){
-    //get the current question from tour questions array hint make use of the index variable
 
-    //add the questions title to the title vairable
+    //get the current question from your questions array 
+    function showQuestions() {
+        answerButtons();
+    }
+    
+    
+    // answer choices text added to the buttons 
+   
+    function answerButtons() {
+        questionTitle.textContent = quizQuestions[index].question;
+        choiceA.textContent = quizQuestions[index].choices[0];
+        choiceB.textContent = quizQuestions[index].choices[1];
+        choiceC.textContent = quizQuestions[index].choices[2];
+        choiceD.textContent = quizQuestions[index].choices[3];
+    };
 
-    //loop over your question choices, dynamically create buttons for each choice, add attrbutes to buttons that allow you to capture the value if it is clicked and add the choice text to them, add an onclick event to each button. Append the buttons to questionOptionsEl. 
-}
+    // when an answer choice is selected, determine if right or wrong
+
+    
+
+    // added event listeners for when specific choices are clicked 
+
+    function chooseA() { checkAnswer(0); }
+
+    function chooseB() { checkAnswer(1); }
+    
+    function chooseC() { checkAnswer(2); }
+    
+    function chooseD() { checkAnswer(3); }
+    
+    choiceA.addEventListener("click", chooseA);
+    choiceB.addEventListener("click", chooseB);
+    choiceC.addEventListener("click", chooseC);
+    choiceD.addEventListener("click", chooseD);
 
 //create your button click function.This  function should deduct time if the answer is wrong, it also needs to increase the question index to move to the next question. create a conditional that checks if there are more questions in the array if there are ask the next question or game over. 
 
