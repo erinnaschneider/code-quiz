@@ -18,6 +18,7 @@ var choiceD = document.getElementById("d");
 var time = 75;
 var index = 0;
 var timer;
+var rightAnswer = 0;
 
 //create array of questions
 
@@ -26,31 +27,31 @@ var quizQuestions =
         {
           question: "What is the first item in an HTML document?",
           choices: ["<head>", "<!DOCTYPE>", "<body>", "<html>"],
-          answer: "2"
+          correctAnswer: "<!DOCTYPE>"
         },
         
         {
           question: "What does HTML stand for?",
           choices: ["Hyper Text Marketing Language", "Hyper Text Movement Language", "Hyper Text Model Language", "Hyper Text Markup Language"],
-          answer: "4"
+          correctAnswer: "Hyper Text Markup Language"
         },
 
         {
             question: "What does DOM stand for?",
             choices: ["Data Object Model", "Data Operative Manual", "Document Object Model", "Document Opening Manual"],
-            answer: "3"
+            correctAnswer: "Document Object Model"
         },
 
         {
             question: "What does API stand for?",
             choices: ["Application programming interface", "Application popup interface", "Application programming index", "Application popup index"],
-            answer: "1"
+            correctAnswer: "Application programming interface"
         },
 
         {
             question: "How do you call a function named 'myFunction'?",
             choices: ["{myFunction}", "(myFunction)", "myFunction()", "myFunction{}"],
-            answer: "3"
+            correctAnswer: "myFunction()"
         }
         
       ];
@@ -100,7 +101,29 @@ function getGoing(){
 
     // when an answer choice is selected, determine if right or wrong
 
-    
+    function checkAnswer (answer) {
+        
+        var horizontalRule = document.getElementById("horizontalRule");
+        horizontalRule.style.display = "block";
+        answered.style.display = "block";
+
+    if (quizQuestions[index].correctAnswer === quizQuestions[index].choices[answer]) {
+       answered.textContent = "That's right!";
+    } else {
+
+        time -= 7;
+        timeEl.textContent = time;
+        answered.textContent = "Sorry... that's incorrect."
+    }
+   index++;
+   if (index < quizQuestions.length) {
+       answerButtons();
+   } else {
+       gameOver();
+   }
+
+}
+
 
     // added event listeners for when specific choices are clicked 
 
@@ -112,10 +135,7 @@ function getGoing(){
     
     function chooseD() { checkAnswer(3); }
     
-    choiceA.addEventListener("click", chooseA);
-    choiceB.addEventListener("click", chooseB);
-    choiceC.addEventListener("click", chooseC);
-    choiceD.addEventListener("click", chooseD);
+    
 
 //create your button click function.This  function should deduct time if the answer is wrong, it also needs to increase the question index to move to the next question. create a conditional that checks if there are more questions in the array if there are ask the next question or game over. 
 
@@ -134,3 +154,7 @@ function gameOver(){
 
 //onclick events / event listeners
 startButton.onclick = getGoing;
+choiceA.addEventListener("click", chooseA);
+choiceB.addEventListener("click", chooseB);
+choiceC.addEventListener("click", chooseC);
+choiceD.addEventListener("click", chooseD);
