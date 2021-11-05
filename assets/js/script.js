@@ -106,15 +106,17 @@ function getGoing(){
         var horizontalRule = document.getElementById("horizontalRule");
         horizontalRule.style.display = "block";
         answered.style.display = "block";
-
+    // checks in correctAnswer in the array string is equal to the string from what the user selected on the click event
     if (quizQuestions[index].correctAnswer === quizQuestions[index].choices[answer]) {
+        // because these strings are equal, add encouraging text to the <p id=answered>
        answered.textContent = "That's right!";
     } else {
-
+      // because theses strings are NOT equal, deduct 7 from the total time left, and add text warning to the <p id=answered>
         time -= 7;
         timeEl.textContent = time;
         answered.textContent = "Sorry... that's incorrect."
     }
+    // go through the entire index of the quizQuestions array
    index++;
    if (index < quizQuestions.length) {
        answerButtons();
@@ -134,20 +136,17 @@ function getGoing(){
     function chooseC() { checkAnswer(2); }
     
     function chooseD() { checkAnswer(3); }
-    
-    
-
-//create your button click function.This  function should deduct time if the answer is wrong, it also needs to increase the question index to move to the next question. create a conditional that checks if there are more questions in the array if there are ask the next question or game over. 
 
 
 function gameOver(){
     //stop timer
-    clearInterval(timer);
-
+    questionsEl.setAttribute('class', 'hide');
+    endGame.removeAttribute('class');
+    time.style.display = "none";
     //hide question container
 
     //show endgame container with users final score
-
+    
 }
 
 //create a fucntion that captures the final score and intitals and saves them to local storage
