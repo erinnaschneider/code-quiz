@@ -36,7 +36,7 @@
       </div>
 
       <!--end Game Container-->
-      <div class="hide" id="endgame">
+      <div style="display: none" id="endgame">
           <h1>GAME OVER</h1>
           <p>Your score is: <span id="finalscore"></span></p>
           <p>Your initials here: <input type="text" id="initials" />
@@ -46,6 +46,18 @@
 
     </div>
 
+   <!-- highScores section -->
+   <div id="highScoreSection" style="display: none">
+     <h1>High Scores</h1>
+     <div id="highscorelist">
+
+     </div>
+
+     <p>
+       <button type="submit" id="goBackbtn">Go Back</button>
+       <button type="submit" id="clearScores">Clear All Scores</button>
+   </div>
+   
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

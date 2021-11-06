@@ -10,13 +10,14 @@ var finalScoreEl = document.getElementById('finalscore');
 var initialsInput = document.getElementById('initials');
 var initialsSubmitButton = document.getElementById("submitinitials");
 var timesUp = document.getElementById("timesUp");
+var highScoreSection = document.getElementById("highScoreSection");
 
 var choiceA = document.getElementById("a");
 var choiceB = document.getElementById("b");
 var choiceC = document.getElementById("c");
 var choiceD = document.getElementById("d");
 
-var time = 75;
+var time = 3;
 var index = 0;
 var timer;
 var rightAnswer = 0;
@@ -63,7 +64,8 @@ var quizQuestions =
         timer = setInterval(function(){
             if (index >= quizQuestions.length || time <= 0) {
                     //check if the time has ran out then call a function called gameOver.
-                    gameOver()
+                    gameOver();
+                    clearInterval(timer);
             }
             else {
                 //deduct 1 sec from time
@@ -74,7 +76,9 @@ var quizQuestions =
             }
             return time;
         }, 1000);
-    }
+    };
+
+
     function getGoing(){
         //when the start button is clicked the start container is hidden and the question container is shown. Also our timer starts.
      startContainer.setAttribute('class', 'hide');
@@ -142,9 +146,9 @@ var quizQuestions =
 
 
 function gameOver(){
+    console.log("gameOver");
     //stop timer
-    
-    endGame.removeAttribute('class');
+    endGame.style.display = "block";
     timesUp.style.display = "block";
     //hide question container
     questionsEl.setAttribute('class', 'hide');
@@ -152,11 +156,23 @@ function gameOver(){
     finalScoreEl.textContent = time;
 }
 
-//create a fucntion that captures the final score and intitals and saves them to local storage
-
+//create a function that captures the final score and intitals and saves them to local storage
+ function highScores(event) {
+     event.preventDefault();
+     // force initials to be entered, no blank answers
+     if (initialsInput.value === "") {
+        alert("You need to enter your initials!");
+         return;
+     }
+     highScoreSection.style.display = "block";
+     endGame.style.display = "none";
+ }
 //onclick events / event listeners
 startButton.addEventListener("click", getGoing);
 choiceA.addEventListener("click", chooseA);
 choiceB.addEventListener("click", chooseB);
 choiceC.addEventListener("click", chooseC);
 choiceD.addEventListener("click", chooseD);
+initialsSubmitButton.addEventListener("click", function(event){ 
+    highScores(event);
+});
