@@ -9,6 +9,7 @@ var endGame = document.getElementById('endgame');
 var finalScoreEl = document.getElementById('finalscore');
 var initialsInput = document.getElementById('initials');
 var initialsSubmitButton = document.getElementById("submitinitials");
+var timesUp = document.getElementById("timesUp");
 
 var choiceA = document.getElementById("a");
 var choiceB = document.getElementById("b");
@@ -19,6 +20,7 @@ var time = 75;
 var index = 0;
 var timer;
 var rightAnswer = 0;
+
 
 //create array of questions
 
@@ -57,30 +59,30 @@ var quizQuestions =
       ];
       
 
-function getGoing(){
-    //when the start button is clicked the start container is hidden and the question container is shown. Also our timer starts.
- startContainer.setAttribute('class', 'hide');
- questionsEl.removeAttribute('class');
-
- timer = setInterval(function(){
-     //deduct 1 sec from time
-     time--;
-     //display the time on the page
-     timeEl.textContent = time;
-
-     //check if the time has ran out then call a function called gameOver.
-
-     if (time <= 0 ) {
-         gameOver()
-     };
- }, 1000);
-
- //display the time on the page
- timeEl.textContent = time;
-
- //get the questions from the array
- showQuestions()
-};
+      function scoreTimer() {
+        timer = setInterval(function(){
+            if (index >= quizQuestions.length || time <= 0) {
+                    //check if the time has ran out then call a function called gameOver.
+                    gameOver()
+            }
+            else {
+                //deduct 1 sec from time
+                time--;
+                //display the time on the page
+                timeEl.textContent = time;
+                return time;
+            }
+            return time;
+        }, 1000);
+    }
+    function getGoing(){
+        //when the start button is clicked the start container is hidden and the question container is shown. Also our timer starts.
+     startContainer.setAttribute('class', 'hide');
+     questionsEl.removeAttribute('class');
+     scoreTimer();
+     //get the questions from the array
+     showQuestions()
+    };
 
 
     //get the current question from your questions array 
@@ -109,6 +111,7 @@ function getGoing(){
     // checks in correctAnswer in the array string is equal to the string from what the user selected on the click event
     if (quizQuestions[index].correctAnswer === quizQuestions[index].choices[answer]) {
         // because these strings are equal, add encouraging text to the <p id=answered>
+        rightAnswer++;
        answered.textContent = "That's right!";
     } else {
       // because theses strings are NOT equal, deduct 7 from the total time left, and add text warning to the <p id=answered>
@@ -140,19 +143,19 @@ function getGoing(){
 
 function gameOver(){
     //stop timer
-    questionsEl.setAttribute('class', 'hide');
-    endGame.removeAttribute('class');
-    time.style.display = "none";
-    //hide question container
-
-    //show endgame container with users final score
     
+    endGame.removeAttribute('class');
+    timesUp.style.display = "block";
+    //hide question container
+    questionsEl.setAttribute('class', 'hide');
+    //show endgame container with users final score
+    finalScoreEl.textContent = time;
 }
 
 //create a fucntion that captures the final score and intitals and saves them to local storage
 
 //onclick events / event listeners
-startButton.onclick = getGoing;
+startButton.addEventListener("click", getGoing);
 choiceA.addEventListener("click", chooseA);
 choiceB.addEventListener("click", chooseB);
 choiceC.addEventListener("click", chooseC);
