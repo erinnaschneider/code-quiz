@@ -17,7 +17,7 @@ var choiceB = document.getElementById("b");
 var choiceC = document.getElementById("c");
 var choiceD = document.getElementById("d");
 
-var time = 3;
+var time = 75;
 var index = 0;
 var timer;
 var rightAnswer = 0;
@@ -166,6 +166,25 @@ function gameOver(){
      }
      highScoreSection.style.display = "block";
      endGame.style.display = "none";
+
+     var savedScores = localStorage.getItem("high scores");
+     var highScoresArray;
+     
+     if(savedScores === null) {
+         scoresArray = [];
+     } else {
+         scoresArray = JSON.parase(savedScores);
+     }
+
+     var playerScore = {
+         initials: initialsInput.value,
+         score: finalScoreEl.textContent
+     };
+
+     var savedScoresString = JSON.stringify(highScoresArray);
+     window.localStorage.setItem("high scores", savedScoresString);
+
+
  }
 //onclick events / event listeners
 startButton.addEventListener("click", getGoing);
