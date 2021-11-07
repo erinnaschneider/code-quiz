@@ -11,6 +11,7 @@ var initialsInput = document.getElementById('initials');
 var initialsSubmitButton = document.getElementById("submitinitials");
 var timesUp = document.getElementById("timesUp");
 var highScoreSection = document.getElementById("highScoreSection");
+var highScoreList = document.getElementById("highscorelist");
 
 var choiceA = document.getElementById("a");
 var choiceB = document.getElementById("b");
@@ -167,24 +168,43 @@ function gameOver(){
      highScoreSection.style.display = "block";
      endGame.style.display = "none";
 
-     var savedScores = localStorage.getItem("high scores");
+     var savedScores = localStorage.getItem("highscores");
      var highScoresArray;
      
      if(savedScores === null) {
-         scoresArray = [];
+         highScoresArray = [];
      } else {
-         scoresArray = JSON.parase(savedScores);
+         highScoresArray = JSON.parse(savedScores);
      }
 
      var playerScore = {
          initials: initialsInput.value,
          score: finalScoreEl.textContent
      };
+     
+     highScoresArray.push(playerScore)
 
      var savedScoresString = JSON.stringify(highScoresArray);
-     window.localStorage.setItem("high scores", savedScoresString);
+     window.localStorage.setItem("highscores", savedScoresString);
+
+   showScores();
+ }
 
 
+ function showScores() {
+
+    var savedScores = localStorage.getItem("highscores");
+
+    if(savedScores === null) {
+        return;
+    }
+    var storedHighScores = JSON.parse(savedScores);
+
+    for (i = 0; i < storedHighScores.length; i++) {
+        var eachSubmit = document.createElement("p");
+        eachSubmit.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score; 
+        highScoreList.appendChild(eachSubmit);
+    }
  }
 //onclick events / event listeners
 startButton.addEventListener("click", getGoing);
