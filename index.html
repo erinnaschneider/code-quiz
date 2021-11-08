@@ -9,16 +9,24 @@
 </head>
 <body>
     <!-- Main container -->
-    <div class="container">
+    <header>
       <div><a href="#" id="seehighscores">High Scores</a></div>
-
       <div class="timer" id="timebox">Time: <span id="time">75</span></div>
       <div id="timesUp" style="display: none">Time is up!</div>
+    </header>
+    <div>
+      <div class="container">
+      
+
+      
+      
         <!-- start container-->
-      <div id="start">
+      <div id="start" class="startBox">
           <h1>Coding Quiz Challenge</h1>
-          <p>Try to answer these coding questions within the given time limit. Whatever time is left will be your score! Incorrect responses will reduce your time remaining by 7 seconds. Play as much as you like to see if you can beat your high score!</p>
+          <p>Try to answer these coding questions within the given time limit. Whatever time is left will be your score!</p>
+          <p> Incorrect responses will reduce your time remaining by 7 seconds. Play as much as you like to see if you can beat your high score!</p>
           <button id="startBtn">Start Quiz</button>
+      </div>
       </div>
       <!--Question Container-->
       <div id="questions" class="hide">
@@ -39,7 +47,7 @@
       <div style="display: none" id="endgame">
           <h1>GAME OVER</h1>
           <p>Your score is: <span id="finalscore"></span></p>
-          <p>Your initials here: <input type="text" id="initials" />
+          <p>Please enter your initials: <input type="text" id="initials" />
                 <button id="submitinitials">Submit</button>        
         </p>
       </div>
