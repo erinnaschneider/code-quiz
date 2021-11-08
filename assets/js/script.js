@@ -12,6 +12,8 @@ var initialsSubmitButton = document.getElementById("submitinitials");
 var timesUp = document.getElementById("timesUp");
 var highScoreSection = document.getElementById("highScoreSection");
 var highScoreList = document.getElementById("highscorelist");
+var goBack = document.getElementById("goBackBtn");
+var clearScores = document.getElementById("clearScores");
 
 var choiceA = document.getElementById("a");
 var choiceB = document.getElementById("b");
@@ -206,6 +208,15 @@ function gameOver(){
         highScoreList.appendChild(eachSubmit);
     }
  }
+
+ function goBackToStart () {
+    startContainer.style.display = "block";
+    highScoreSection.style.display = "none";
+}
+
+function clearTheScores () {
+    window.localStorage.removeItem("highscores")
+}
 //onclick events / event listeners
 startButton.addEventListener("click", getGoing);
 choiceA.addEventListener("click", chooseA);
@@ -215,3 +226,5 @@ choiceD.addEventListener("click", chooseD);
 initialsSubmitButton.addEventListener("click", function(event){ 
     highScores(event);
 });
+goBack.addEventListener("click", goBackToStart);
+clearScores.addEventListener("click", clearTheScores);
