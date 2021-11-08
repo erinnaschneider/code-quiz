@@ -1,5 +1,6 @@
 //declare our variables for Dom
 var timeEl = document.getElementById('time');
+var timeBox = document.getElementById('timebox');
 var startContainer = document.getElementById('start');
 var startButton = document.getElementById('startBtn');
 var questionsEl = document.getElementById('questions');
@@ -12,8 +13,9 @@ var initialsSubmitButton = document.getElementById("submitinitials");
 var timesUp = document.getElementById("timesUp");
 var highScoreSection = document.getElementById("highScoreSection");
 var highScoreList = document.getElementById("highscorelist");
-var goBack = document.getElementById("goBackBtn");
+var goBack = document.getElementById("goBackbtn");
 var clearScores = document.getElementById("clearScores");
+var seeHighScores = document.getElementById("seehighscores");
 
 var choiceA = document.getElementById("a");
 var choiceB = document.getElementById("b");
@@ -153,6 +155,7 @@ function gameOver(){
     //stop timer
     endGame.style.display = "block";
     timesUp.style.display = "block";
+    timeBox.style.display = "none";
     //hide question container
     questionsEl.setAttribute('class', 'hide');
     //show endgame container with users final score
@@ -207,16 +210,16 @@ function gameOver(){
         eachSubmit.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score; 
         highScoreList.appendChild(eachSubmit);
     }
- }
+ };
 
  function goBackToStart () {
-    startContainer.style.display = "block";
-    highScoreSection.style.display = "none";
-}
+     window.location.href = "./index.html"
+    };
 
 function clearTheScores () {
-    window.localStorage.removeItem("highscores")
-}
+    localStorage.clear();
+    highScoreList.innerHTML = "All scores cleared!"
+};
 //onclick events / event listeners
 startButton.addEventListener("click", getGoing);
 choiceA.addEventListener("click", chooseA);
@@ -225,6 +228,12 @@ choiceC.addEventListener("click", chooseC);
 choiceD.addEventListener("click", chooseD);
 initialsSubmitButton.addEventListener("click", function(event){ 
     highScores(event);
+});
+seeHighScores.addEventListener("click", function(event) {
+    highScoreSection.style.display = "block";
+    startContainer.style.display = "none";
+    timeBox.style.display = "none";
+    showScores(event);
 });
 goBack.addEventListener("click", goBackToStart);
 clearScores.addEventListener("click", clearTheScores);
