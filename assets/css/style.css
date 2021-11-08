@@ -76,7 +76,7 @@ li {
     flex-direction: column;
 }
 
-#endgame, #endgame p, #endgame h1, #highScoreSection p, #highScoreSection h1 {
+#endgame, #endgame p, #endgame h1, #highScoreSection p, #highScoreSection h1, #highScoreSection div {
     display: flex;
     justify-content: center;
     align-items: center;

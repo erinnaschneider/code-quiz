@@ -233,6 +233,7 @@ seeHighScores.addEventListener("click", function(event) {
     highScoreSection.style.display = "block";
     startContainer.style.display = "none";
     timeBox.style.display = "none";
+    questionsEl.style.display = "none";
     showScores(event);
 });
 goBack.addEventListener("click", goBackToStart);
