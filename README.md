@@ -15,7 +15,7 @@
 
 ## Screencaptures of Quiz:
 ![image](https://user-images.githubusercontent.com/90404513/140765296-f8819daf-b0e3-4058-9cd9-b0f3fe10a9fa.png)
-![image](https://user-images.githubusercontent.com/90404513/140765297-08e433d7-dad5-45ed-914f-e5bf6763792f.png)
+
 
 
 
