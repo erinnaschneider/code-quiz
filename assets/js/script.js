@@ -203,8 +203,10 @@ function gameOver(){
     if(savedScores === null) {
         return;
     }
-    var storedHighScores = JSON.parse(savedScores);
+    highScoreList.innerHTML = "";
 
+    var storedHighScores = JSON.parse(savedScores);
+     
     for (i = 0; i < storedHighScores.length; i++) {
         var eachSubmit = document.createElement("p");
         eachSubmit.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score; 
